@@ -1,5 +1,5 @@
 dayjs().format();
-today = dayjs().format('M/D/YYYY');
+var today = dayjs().format('M/D/YYYY');
 var openWeatherKey = "28b9f68edfd5dc9c73e3e4892e6278f5";
 var city;
 var lat;
@@ -25,14 +25,14 @@ function currentWeatherAPI() {
             return response.json();
         })
         .then(function (data) {
-            var today = {
+            var currentDay = {
                 temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
                 humid: "Humidity: " + data.main.humidity + '%'
             }
-            currentTemp.text(today.temp);
-            currentWind.text(today.wind);
-            currentHumidity.text(today.humid);
+            currentTemp.text(currentDay.temp);
+            currentWind.text(currentDay.wind);
+            currentHumidity.text(currentDay.humid);
         });
 
 }
@@ -46,7 +46,7 @@ function openWeatherAPI() {
         .then(function (data) {
             console.log(data.list);
 
-            
+    fiveDay = [];        
             var dayOne = {
                 date: dayjs.unix(data.list[4].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[4].main.temp - 273.15) * (9 / 5) + 32) + "°F",
@@ -120,11 +120,11 @@ function fiveDayForcast() {
     // Day+1
     date1 = $('<h6>');
     date1.text(fiveDay[0].date);
-    day1.children('.date').append(date1);
+    day1.children('.date').html(date1);
     var weatherInfo1 = day1.children('.weatherInfo');
     var temp1 = $('<li>');
     temp1.text(fiveDay[0].temp);
-    weatherInfo1.append(temp1);
+    weatherInfo1.html(temp1);
     var wind1 = $('<li>');
     wind1.text(fiveDay[0].wind);
     weatherInfo1.append(wind1);
@@ -135,11 +135,11 @@ function fiveDayForcast() {
     // day+2
     date2 = $('<h6>');
     date2.text(fiveDay[1].date);
-    day2.children('.date').append(date2);
+    day2.children('.date').html(date2);
     var weatherInfo2 = day2.children('.weatherInfo');
     var temp2 = $('<li>');
     temp2.text(fiveDay[1].temp);
-    weatherInfo2.append(temp2);
+    weatherInfo2.html(temp2);
     var wind2 = $('<li>');
     wind2.text(fiveDay[1].wind);
     weatherInfo2.append(wind2);
@@ -150,11 +150,11 @@ function fiveDayForcast() {
     // day+3
     date3 = $('<h6>');
     date3.text(fiveDay[2].date);
-    day3.children('.date').append(date3);
+    day3.children('.date').html(date3);
     var weatherInfo3 = day3.children('.weatherInfo');
     var temp3 = $('<li>');
     temp3.text(fiveDay[2].temp);
-    weatherInfo3.append(temp3);
+    weatherInfo3.html(temp3);
     var wind3 = $('<li>');
     wind3.text(fiveDay[2].wind);
     weatherInfo3.append(wind3);
@@ -165,11 +165,11 @@ function fiveDayForcast() {
     // day+4
     date4 = $('<h6>');
     date4.text(fiveDay[3].date);
-    day4.children('.date').append(date4);
+    day4.children('.date').html(date4);
     var weatherInfo4 = day4.children('.weatherInfo');
     var temp4 = $('<li>');
     temp4.text(fiveDay[3].temp);
-    weatherInfo4.append(temp4);
+    weatherInfo4.html(temp4);
     var wind4 = $('<li>');
     wind4.text(fiveDay[3].wind);
     weatherInfo4.append(wind4);
@@ -180,11 +180,11 @@ function fiveDayForcast() {
     // day+5
     date5 = $('<h6>');
     date5.text(fiveDay[4].date);
-    day5.children('.date').append(date5);
+    day5.children('.date').html(date5);
     var weatherInfo5 = day5.children('.weatherInfo');
     var temp5 = $('<li>');
     temp5.text(fiveDay[4].temp);
-    weatherInfo5.append(temp5);
+    weatherInfo5.html(temp5);
     var wind5 = $('<li>');
     wind5.text(fiveDay[4].wind);
     weatherInfo5.append(wind5);
