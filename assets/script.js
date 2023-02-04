@@ -10,6 +10,7 @@ var currentWind = $('#wind');
 var currentHumidity = $('#humidity');
 var searchCity = $('input[name="search"]');
 var searchBtn = $('#searchBtn');
+var searchResults = $('#searchResults');
 var day1 = $('#day1');
 var day2 = $('#day2');
 var day3 = $('#day3');
@@ -17,24 +18,23 @@ var day4 = $('#day4');
 var day5 = $('#day5');
 var fiveDay = [];
 
-function currentWeatherAPI(){
+function currentWeatherAPI() {
     var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
     fetch(currentWeatherURL)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-        var today = {
-            temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
-            wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
-            humid: "Humidity: " + data.main.humidity + '%'
-        }
-        console.log(data);
-        currentTemp.text(today.temp);
-        currentWind.text(today.wind);
-        currentHumidity.text(today.humid);
+            var today = {
+                temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
+                wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
+                humid: "Humidity: " + data.main.humidity + '%'
+            }
+            currentTemp.text(today.temp);
+            currentWind.text(today.wind);
+            currentHumidity.text(today.humid);
         });
-    
+
 }
 
 function openWeatherAPI() {
