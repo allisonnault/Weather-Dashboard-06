@@ -25,6 +25,7 @@ function currentWeatherAPI() {
             return response.json();
         })
         .then(function (data) {
+            // console.log(data);
             var currentDay = {
                 temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
@@ -44,9 +45,9 @@ function openWeatherAPI() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.list);
+            // console.log(data.list);
 
-    fiveDay = [];        
+            fiveDay = [];
             var dayOne = {
                 date: dayjs.unix(data.list[4].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[4].main.temp - 273.15) * (9 / 5) + 32) + "°F",
@@ -68,7 +69,7 @@ function openWeatherAPI() {
                 humid: "Humidity: " + data.list[20].main.humidity + '%'
             }
             fiveDay.push(dayThree);
-            
+
             var dayFour = {
                 date: dayjs.unix(data.list[28].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[28].main.temp - 273.15) * (9 / 5) + 32) + "°F",
@@ -76,7 +77,7 @@ function openWeatherAPI() {
                 humid: "Humidity: " + data.list[28].main.humidity + '%'
             }
             fiveDay.push(dayFour);
-            
+
             var dayFive = {
                 date: dayjs.unix(data.list[36].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[36].main.temp - 273.15) * (9 / 5) + 32) + "°F",
@@ -84,10 +85,11 @@ function openWeatherAPI() {
                 humid: "Humidity: " + data.list[36].main.humidity + '%'
             }
             fiveDay.push(dayFive);
-           
+
             fiveDayForcast();
 
-        });}
+        });
+}
 
 function geoCodeAPI() {
     var geoCodingURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + openWeatherKey;
@@ -96,9 +98,20 @@ function geoCodeAPI() {
             return response.json();
         })
         .then(function (data) {
+            console.log(data);
             lat = data[0].lat;
             lon = data[0].lon;
             currentCity.text(data[0].name + ", " + data[0].state + " - " + today);
+            var cityInfo = {
+                city: data[0].name,
+                state: data[0].state,
+                lat: data[0].lat,
+                lon: data[0].lon
+            }
+            var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
+            storedSearch.push(cityInfo);
+            localStorage.setItem("weatherAPI", JSON.stringify(storedSearch));
+            saveSearch();
             openWeatherAPI();
             currentWeatherAPI();
             // console.log(data);
@@ -194,3 +207,29 @@ function fiveDayForcast() {
 
 
 }
+
+function saveSearch() {
+    var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
+    searchResults.html(" ");
+    for (var i = 0; i < storedSearch.length; i++) {
+        var buttonEl = $("<button>");
+        buttonEl.text(storedSearch[i].city)
+        buttonEl.attr('data-lat', storedSearch[i].lat);
+        buttonEl.attr('data-lon', storedSearch[i].lon);
+        buttonEl.attr('data-city', storedSearch[i].city);
+        buttonEl.attr("data-state", storedSearch[i].state);
+        buttonEl.addClass('pastBtn btn btn-dark w-100')
+        searchResults.append(buttonEl);
+    }
+}
+saveSearch();
+
+searchResults.on('click', '.pastBtn', function () {
+    lat = $(this).attr('data-lat');
+    lon = $(this).attr('data-lon');
+    currentCity.text($(this).attr('data-city') + ", " + $(this).attr('data-state') + " - " + today);
+
+    
+    openWeatherAPI();
+    currentWeatherAPI();
+}); 
