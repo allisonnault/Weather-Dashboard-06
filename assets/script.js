@@ -49,7 +49,7 @@ function openWeatherAPI() {
             weatherInfo1.append(humid1);
 
             // day+2
-            var dayTWo = {
+            var dayTwo = {
                 date: dayjs.unix(data.list[8].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[8].main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.list[8].wind.speed) * 2.23694).toFixed(2) + " MPH",
