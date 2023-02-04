@@ -19,24 +19,24 @@ function openWeatherAPI() {
             return response.json();
         })
         .then(function (data) {
-            for (var i = 0; i < data.length; i +8) {
+
+            for (var i = 0; i < data.length; i += 8) {
                 var date = dayjs.unix(data.list[i].dt).format("MM/DD/YY");
                 var temp = Math.trunc((data.list[i].main.temp - 273.15) * (9 / 5) + 32) + "°F";
                 var wind = ((data.list[i].wind.speed) * 2.23694).toFixed(2) + " MPH";
                 var humidity = data.list[i].main.humidity + '%';
 
-                var fiveDayInfo = {
-                    fiveDate: date,
-                    fiveTemp: temp,
-                    fiveWind: wind,
-                    fiveHumidity: humidity
+                fiveDayItems = {
+                    date: date.val(),
+                    temp: temp.val(),
+                    wind: wind.val(),
+                    humidity: humidity.val(),
                 }
-
-              fiveDay.push(fiveDayInfo);
-              console.log(fiveDay);
+                fiveDay.push(fiveDayItems);
+                console.log(fiveDay);
 
             }
-            // console.log(data.list);
+            console.log(data.list);
         }
         );
 }
