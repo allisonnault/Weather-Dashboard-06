@@ -17,6 +17,25 @@ var day4 = $('#day4');
 var day5 = $('#day5');
 var fiveDay = [];
 
+function currentWeatherAPI(){
+    var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
+    fetch(currentWeatherURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+        var today = {
+            temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
+            wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
+            humid: "Humidity: " + data.main.humidity + '%'
+        }
+        console.log(data);
+        currentTemp.text(today.temp);
+        currentWind.text(today.wind);
+        currentHumidity.text(today.humid);
+        });
+    
+}
 
 function openWeatherAPI() {
     var openWeatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
@@ -65,8 +84,7 @@ function openWeatherAPI() {
                 humid: "Humidity: " + data.list[36].main.humidity + '%'
             }
             fiveDay.push(dayFive);
-            
-            console.log(fiveDay);
+           
             fiveDayForcast();
 
         });}
@@ -82,6 +100,7 @@ function geoCodeAPI() {
             lon = data[0].lon;
             currentCity.text(data[0].name + ", " + data[0].state + " - " + today);
             openWeatherAPI();
+            currentWeatherAPI();
             // console.log(data);
         });
 }
@@ -99,7 +118,6 @@ searchBtn.on('click', function () {
 function fiveDayForcast() {
 
     // Day+1
-    
     date1 = $('<h6>');
     date1.text(fiveDay[0].date);
     day1.children('.date').append(date1);
