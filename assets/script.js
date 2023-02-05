@@ -5,6 +5,7 @@ var city;
 var lat;
 var lon;
 var currentCity = $('#CityDate');
+var currentIcon = $('#icon');
 var currentTemp = $('#temp');
 var currentWind = $('#wind');
 var currentHumidity = $('#humidity');
@@ -18,6 +19,7 @@ var day4 = $('#day4');
 var day5 = $('#day5');
 var fiveDay = [];
 
+
 function currentWeatherAPI() {
     var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
     fetch(currentWeatherURL)
@@ -26,11 +28,17 @@ function currentWeatherAPI() {
         })
         .then(function (data) {
             // console.log(data);
+            
             var currentDay = {
+                icon: data.weather[0].icon,
                 temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
                 humid: "Humidity: " + data.main.humidity + '%'
             }
+            var iconURL = 'http://openweathermap.org/img/wn/' + currentDay.icon + '@2x.png'
+            var icon = $('<img>');
+            icon.attr("src", iconURL);
+            currentCity.append(icon);
             currentTemp.text(currentDay.temp);
             currentWind.text(currentDay.wind);
             currentHumidity.text(currentDay.humid);
@@ -101,7 +109,7 @@ function geoCodeAPI() {
             console.log(data);
             lat = data[0].lat;
             lon = data[0].lon;
-            currentCity.text(data[0].name + ", " + data[0].state + " - " + today);
+            currentCity.text(data[0].name + ", " + data[0].state + " - " + today + " ");
             var cityInfo = {
                 city: data[0].name,
                 state: data[0].state,

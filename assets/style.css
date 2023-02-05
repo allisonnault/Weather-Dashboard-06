@@ -1,9 +1,14 @@
 :root {
     --darkblue: #115492;
     --midblue: #2d6ba6;
+    --greyblue: #5d84a9;
     --lightblue: #cce0ff;
     --ltgrey: #e5e6e2;
     --offwhite: #f5f5f4;
+    
+}
+* {
+    font-family: 'Raleway', sans-serif;
 }
 
 .weatherInfo {
@@ -30,6 +35,7 @@
 
 .btn {
     background-color: var(--darkblue);
+    
 }
 
 .btn:hover {
@@ -42,4 +48,17 @@
 
 #fiveDay h6 {
     margin-bottom: 0px;
+}
+
+#CityDate img {
+    max-width: 50px;
+}
+
+#weatherTable th {
+    border-radius: 8px 8px 0 0;
+}
+
+#weatherTable  thead{
+    background-color: var(--greyblue) !important;
+    color: white;
 }
