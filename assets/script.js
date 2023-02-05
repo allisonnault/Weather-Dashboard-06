@@ -56,8 +56,9 @@ function openWeatherAPI() {
             console.log(data.list);
 
             fiveDay = [];
+
             var dayOne = {
-                icon: data.list[4].weather[0].icon,
+                icon: (data.list[4].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[4].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[4].main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.list[4].wind.speed) * 2.23694).toFixed(2) + " MPH",
@@ -66,7 +67,7 @@ function openWeatherAPI() {
 
             fiveDay.push(dayOne);
             var dayTwo = {
-                icon: data.list[12].weather[0].icon,
+                icon: (data.list[12].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[12].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[12].main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.list[12].wind.speed) * 2.23694).toFixed(2) + " MPH",
@@ -74,7 +75,7 @@ function openWeatherAPI() {
             }
             fiveDay.push(dayTwo);
             var dayThree = {
-                icon: data.list[20].weather[0].icon,
+                icon: (data.list[20].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[20].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[20].main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.list[20].wind.speed) * 2.23694).toFixed(2) + " MPH",
@@ -83,7 +84,7 @@ function openWeatherAPI() {
             fiveDay.push(dayThree);
 
             var dayFour = {
-                icon: data.list[28].weather[0].icon,
+                icon: (data.list[28].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[28].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[28].main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.list[28].wind.speed) * 2.23694).toFixed(2) + " MPH",
@@ -92,7 +93,7 @@ function openWeatherAPI() {
             fiveDay.push(dayFour);
 
             var dayFive = {
-                icon: data.list[36].weather[0].icon,
+                icon: (data.list[36].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[36].dt).format("MM/DD/YY"),
                 temp: "Temp: " + Math.trunc((data.list[36].main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.list[36].wind.speed) * 2.23694).toFixed(2) + " MPH",
@@ -159,7 +160,7 @@ function fiveDayForcast() {
     humid1.text(fiveDay[0].humid);
     weatherInfo1.append(humid1);
     var icon1 = $('<img>');
-    icon1.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[0].icon + '@2x.png')
+    icon1.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[0].icon + 'd@2x.png')
     weatherInfo1.append(icon1);
 
     // day+2
@@ -177,7 +178,7 @@ function fiveDayForcast() {
     humid2.text(fiveDay[1].humid);
     weatherInfo2.append(humid2);
     var icon2 = $('<img>');
-    icon2.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[1].icon + '@2x.png')
+    icon2.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[1].icon + 'd@2x.png')
     weatherInfo2.append(icon2);
 
     // day+3
@@ -195,7 +196,7 @@ function fiveDayForcast() {
     humid3.text(fiveDay[2].humid);
     weatherInfo3.append(humid3);
     var icon3 = $('<img>');
-    icon3.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[2].icon + '@2x.png')
+    icon3.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[2].icon + 'd@2x.png')
     weatherInfo3.append(icon3);
 
     // day+4
@@ -213,7 +214,7 @@ function fiveDayForcast() {
     humid4.text(fiveDay[3].humid);
     weatherInfo4.append(humid4);
     var icon4 = $('<img>');
-    icon4.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[3].icon + '@2x.png')
+    icon4.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[3].icon + 'd@2x.png')
     weatherInfo4.append(icon4);
 
     // day+5
@@ -231,7 +232,7 @@ function fiveDayForcast() {
     humid5.text(fiveDay[4].humid);
     weatherInfo5.append(humid5);
     var icon5 = $('<img>');
-    icon5.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[4].icon + '@2x.png')
+    icon5.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[4].icon + 'd@2x.png')
     weatherInfo5.append(icon5);
 }
 

@@ -82,9 +82,9 @@
 }
 
 #fiveDay .date {
-    background-color: var(--darkblue);
+    background-color: var(--greyblue);
     color: white;
-    border-radius: 8px 8px 0 0;
+    border-radius: 5px 5px 0 0;
 }
 
 #fiveDay .weatherInfo {
@@ -92,7 +92,11 @@
     background-image: linear-gradient(
         #d4e1ed 0%,
         var(--xlight) 100%);
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 5px 5px;
+}
+
+.weatherInfo img {
+    width: 50px;
 }
 
 .today {
