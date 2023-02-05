@@ -3,7 +3,7 @@
     --midblue: #254f76;
     --greyblue: #5d84a9;
     --lightblue: #85b1da;
-    --ltgrey: #e5e6e2;
+    --xlight: #c2d8eb;
     --offwhite: #f5f5f4;
     
 }
@@ -22,8 +22,6 @@
 #searchResults {
     padding:0px 15px;
 }
-
-
 
 #header {
     padding-top: 8px;
@@ -77,4 +75,22 @@
           var(--lightblue) 100%
         );
     color: white;
+}
+
+#fiveDay .date {
+    background-color: var(--darkblue);
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+#fiveDay .weatherInfo {
+    background-color: var(--xlight);
+    background-image: linear-gradient(
+        #d4e1ed 0%,
+        var(--xlight) 100%);
+    border-radius: 0 0 8px 8px;
+}
+
+.today {
+    width: 95%;
 }
