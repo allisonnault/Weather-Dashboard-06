@@ -11,6 +11,10 @@
     font-family: 'Raleway', sans-serif;
 }
 
+#main {
+    background-color: var(--offwhite) !important;
+}
+
 .weatherInfo {
     list-style: none;
 }
