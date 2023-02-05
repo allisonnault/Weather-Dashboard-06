@@ -211,14 +211,14 @@ function fiveDayForcast() {
 function saveSearch() {
     var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
     searchResults.html(" ");
-    for (var i = 0; i < storedSearch.length; i++) {
+    for (var i = storedSearch.length -1; i > storedSearch.length-6; i--) {
         var buttonEl = $("<button>");
         buttonEl.text(storedSearch[i].city)
         buttonEl.attr('data-lat', storedSearch[i].lat);
         buttonEl.attr('data-lon', storedSearch[i].lon);
         buttonEl.attr('data-city', storedSearch[i].city);
         buttonEl.attr("data-state", storedSearch[i].state);
-        buttonEl.addClass('pastBtn btn btn-dark w-100')
+        buttonEl.addClass('pastBtn btn btn-dark w-100 gap-2')
         searchResults.append(buttonEl);
     }
 }
@@ -228,8 +228,6 @@ searchResults.on('click', '.pastBtn', function () {
     lat = $(this).attr('data-lat');
     lon = $(this).attr('data-lon');
     currentCity.text($(this).attr('data-city') + ", " + $(this).attr('data-state') + " - " + today);
-
-    
     openWeatherAPI();
     currentWeatherAPI();
 }); 

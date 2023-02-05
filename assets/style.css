@@ -1,3 +1,45 @@
+:root {
+    --darkblue: #115492;
+    --midblue: #2d6ba6;
+    --lightblue: #cce0ff;
+    --ltgrey: #e5e6e2;
+    --offwhite: #f5f5f4;
+}
+
 .weatherInfo {
     list-style: none;
+}
+
+.pastBtn {
+    margin: 2px;
+}
+
+#searchResults {
+    padding:0px 15px;
+}
+
+
+
+#header {
+    padding-top: 8px;
+    min-height: 80px;
+    background-color: var(--darkblue);
+    color: var(--offwhite);
+    margin-bottom: 0px;
+}
+
+.btn {
+    background-color: var(--darkblue);
+}
+
+.btn:hover {
+    background-color: var(--midblue);
+}
+
+#main {
+    background-color: var(--ltgrey);
+}
+
+#fiveDay h6 {
+    margin-bottom: 0px;
 }

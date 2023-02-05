@@ -13,10 +13,10 @@
 </head>
 
 <body>
-    <div class="jumbotron text-center bg-dark text-white">
+    <div class="jumbotron page-top text-center">
         <h3 id="header" class="display-4">Weather Dashboard</h3>
     </div>
-    <div class="row">
+    <div id="main" class="row vh-100">
         <div class="col-3">
             <div class="row m-2">
                 <div id="searchCard" class="input-group mb-3">
@@ -32,14 +32,12 @@
 
             </div>
         </div>
-        <div class="col-9">
-            <div class="row m-2">
+        <div class="col-9 left">
+            <div class="row m-2 justify-content-center">
 <!-- Current Date Weather -->
-                <table class="table">
+                <table id="weatherTable" class="table bg-light table-borderless shadow rounded bg-body-tertiary border border-0">
                     <thead>
-                        <tr>
-                            <th scope="col"><h3 id="CityDate"></h3></th>
-                        </tr>
+                        <th scope="col"><h3 id="CityDate"></h3></th>
                     </thead>
                     <tbody>
                         <tr>
@@ -53,15 +51,13 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
- 
 <!-- 5 day forcast -->
-            <div id="fiveDay" class="row container">
-                <div class="row align-items-start w-100">
+            <div id="fiveDay" class="row container justify-content-center">
+                <div class="row  w-100">
                     <h4>5-Day Forcast:</h4>
                     <!-- day 1 -->
                     <div class="col w-100">
-                        <div id="day1" class="col card text-bg-secondary mb-3" style="max-width: 18rem;">
+                        <div id="day1" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
                             <div class="card-header date"></div>
                             <div class="card-body weatherInfo">
                               
@@ -70,7 +66,7 @@
                     </div>
                     <!-- day 2 -->
                     <div class="col w-100">
-                        <div id="day2" class="col card text-bg-secondary mb-3" style="max-width: 18rem;">
+                        <div id="day2" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
                             <div class="card-header date"></div>
                             <div class="card-body weatherInfo">
                               
@@ -79,7 +75,7 @@
                     </div>
                     <!-- day 3 -->
                     <div class="col">
-                        <div id="day3" class="col card text-bg-secondary mb-3" style="max-width: 18rem;">
+                        <div id="day3" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
                             <div class="card-header          date"></div>
                             <div class="card-body weatherInfo">
                               
@@ -88,7 +84,7 @@
                     </div>
                     <!-- day 4 -->
                     <div class="col">
-                        <div id="day4" class="col card text-bg-secondary mb-3" style="max-width: 18rem;">
+                        <div id="day4" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
                             <div class="card-header date"></div>
                             <div class="card-body weatherInfo">
                               
@@ -97,7 +93,7 @@
                     </div>
                     <!-- day 5 -->
                     <div class="col">
-                        <div id="day5" class="col card text-bg-secondary mb-3" style="max-width: 18rem;">
+                        <div id="day5" class="col card mb-3 shadow rounded bg-body-tertiary border border-0" style="max-width: 18rem;">
                             <div class="card-header date"></div>
                             <div class="card-body weatherInfo">
                               
