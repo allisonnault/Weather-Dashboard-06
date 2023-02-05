@@ -28,6 +28,7 @@
 }
 
 #header {
+    
     padding-top: 8px;
     min-height: 80px;
     background-color: var(--darkblue);
@@ -48,9 +49,6 @@
     background-color: var(--greyblue);
 }
 
-#main {
-    background-color: var(--ltgrey);
-}
 
 #fiveDay h6 {
     margin-bottom: 0px;
@@ -77,9 +75,10 @@
     background-image: linear-gradient(
           var(--greyblue) 0%,
           var(--lightblue) 100%
-        );
+        ); 
     color: white;
 }
+
 
 #fiveDay .date {
     background-color: var(--greyblue);

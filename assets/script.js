@@ -239,7 +239,7 @@ function fiveDayForcast() {
 function saveSearch() {
     var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
     searchResults.html(" ");
-    for (var i = storedSearch.length -1; i > storedSearch.length-6; i--) {
+    for (var i = storedSearch.length -1; i > storedSearch.length-9; i--) {
         var buttonEl = $("<button>");
         buttonEl.text(storedSearch[i].city)
         buttonEl.attr('data-lat', storedSearch[i].lat);
