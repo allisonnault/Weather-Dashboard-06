@@ -21,7 +21,7 @@ var fiveDay = [];
 
 
 function currentWeatherAPI() {
-    var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
+    var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey + "&units=imperial";
     fetch(currentWeatherURL)
         .then(function (response) {
             return response.json();
@@ -31,8 +31,8 @@ function currentWeatherAPI() {
             
             var currentDay = {
                 icon: (data.weather[0].icon).slice(0, -1),
-                temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
-                wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
+                temp: "Temp: " + + data.main.temp + "°F",
+                wind: "Wind: " + data.wind.speed + " MPH",
                 humid: "Humidity: " + data.main.humidity + '%'
             }
             var iconURL = 'http://openweathermap.org/img/wn/' + currentDay.icon + 'd@2x.png'
@@ -47,7 +47,7 @@ function currentWeatherAPI() {
 }
 
 function openWeatherAPI() {
-    var openWeatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
+    var openWeatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey + "&units=imperial";
     fetch(openWeatherURL)
         .then(function (response) {
             return response.json();
@@ -60,8 +60,8 @@ function openWeatherAPI() {
             var dayOne = {
                 icon: (data.list[4].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[4].dt).format("MM/DD/YY"),
-                temp: "Temp: " + Math.trunc((data.list[4].main.temp - 273.15) * (9 / 5) + 32) + "°F",
-                wind: "Wind: " + ((data.list[4].wind.speed) * 2.23694).toFixed(2) + " MPH",
+                temp: "Temp: " + data.list[4].main.temp + "°F",
+                wind: "Wind: " + data.list[4].wind.speed + " MPH",
                 humid: "Humidity: " + data.list[4].main.humidity + '%'
             }
 
@@ -69,16 +69,16 @@ function openWeatherAPI() {
             var dayTwo = {
                 icon: (data.list[12].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[12].dt).format("MM/DD/YY"),
-                temp: "Temp: " + Math.trunc((data.list[12].main.temp - 273.15) * (9 / 5) + 32) + "°F",
-                wind: "Wind: " + ((data.list[12].wind.speed) * 2.23694).toFixed(2) + " MPH",
+                temp: "Temp: " + data.list[12].main.temp + "°F",
+                wind: "Wind: " + data.list[12].wind.speed + " MPH",
                 humid: "Humidity: " + data.list[12].main.humidity + '%'
             }
             fiveDay.push(dayTwo);
             var dayThree = {
                 icon: (data.list[20].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[20].dt).format("MM/DD/YY"),
-                temp: "Temp: " + Math.trunc((data.list[20].main.temp - 273.15) * (9 / 5) + 32) + "°F",
-                wind: "Wind: " + ((data.list[20].wind.speed) * 2.23694).toFixed(2) + " MPH",
+                temp: "Temp: " + data.list[20].main.temp + "°F",
+                wind: "Wind: " + data.list[20].wind.speed + " MPH",
                 humid: "Humidity: " + data.list[20].main.humidity + '%'
             }
             fiveDay.push(dayThree);
@@ -86,8 +86,8 @@ function openWeatherAPI() {
             var dayFour = {
                 icon: (data.list[28].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[28].dt).format("MM/DD/YY"),
-                temp: "Temp: " + Math.trunc((data.list[28].main.temp - 273.15) * (9 / 5) + 32) + "°F",
-                wind: "Wind: " + ((data.list[28].wind.speed) * 2.23694).toFixed(2) + " MPH",
+                temp: "Temp: " + data.list[28].main.temp + "°F",
+                wind: "Wind: " + data.list[28].wind.speed + " MPH",
                 humid: "Humidity: " + data.list[28].main.humidity + '%'
             }
             fiveDay.push(dayFour);
@@ -95,8 +95,8 @@ function openWeatherAPI() {
             var dayFive = {
                 icon: (data.list[36].weather[0].icon).slice(0, -1),
                 date: dayjs.unix(data.list[36].dt).format("MM/DD/YY"),
-                temp: "Temp: " + Math.trunc((data.list[36].main.temp - 273.15) * (9 / 5) + 32) + "°F",
-                wind: "Wind: " + ((data.list[36].wind.speed) * 2.23694).toFixed(2) + " MPH",
+                temp: "Temp: " + data.list[36].main.temp + "°F",
+                wind: "Wind: " + data.list[36].wind.speed + " MPH",
                 humid: "Humidity: " + data.list[36].main.humidity + '%'
             }
             fiveDay.push(dayFive);
