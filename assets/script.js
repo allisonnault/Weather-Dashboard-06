@@ -30,12 +30,12 @@ function currentWeatherAPI() {
             // console.log(data);
             
             var currentDay = {
-                icon: data.weather[0].icon,
+                icon: (data.weather[0].icon).slice(0, -1),
                 temp: "Temp: " + + Math.trunc((data.main.temp - 273.15) * (9 / 5) + 32) + "°F",
                 wind: "Wind: " + ((data.wind.speed) * 2.23694).toFixed(2) + " MPH",
                 humid: "Humidity: " + data.main.humidity + '%'
             }
-            var iconURL = 'http://openweathermap.org/img/wn/' + currentDay.icon + '@2x.png'
+            var iconURL = 'http://openweathermap.org/img/wn/' + currentDay.icon + 'd@2x.png'
             var icon = $('<img>');
             icon.attr("src", iconURL);
             currentCity.append(icon);
@@ -239,7 +239,7 @@ function fiveDayForcast() {
 function saveSearch() {
     var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
     searchResults.html(" ");
-    for (var i = storedSearch.length -1; i > storedSearch.length-9; i--) {
+    for (var i = storedSearch.length -1; i > storedSearch.length-7; i--) {
         var buttonEl = $("<button>");
         buttonEl.text(storedSearch[i].city)
         buttonEl.attr('data-lat', storedSearch[i].lat);
