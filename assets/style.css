@@ -8,7 +8,7 @@
     
 }
 * {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #main {
@@ -28,7 +28,6 @@
 }
 
 #header {
-    
     padding-top: 8px;
     min-height: 80px;
     background-color: var(--darkblue);
@@ -42,6 +41,7 @@
 
 .btn {
     background-color: var(--midblue);
+    fon
     
 }
 
@@ -93,6 +93,7 @@
         var(--xlight) 100%);
     border-radius: 0 0 5px 5px;
 }
+
 
 .weatherInfo img {
     width: 50px;
