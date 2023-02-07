@@ -36,7 +36,7 @@ function currentWeatherAPI() {
                 wind: "Wind: " + data.wind.speed + " MPH",
                 humid: "Humidity: " + data.main.humidity + '%'
             }
-            var iconURL = 'http://openweathermap.org/img/wn/' + currentDay.icon + 'd@2x.png'
+            var iconURL = 'https://openweathermap.org/img/wn/' + currentDay.icon + 'd@2x.png'
             var icon = $('<img>');
             icon.attr("src", iconURL);
             currentCity.append(icon);
@@ -48,7 +48,7 @@ function currentWeatherAPI() {
 }
 
 function openWeatherAPI() {
-    var openWeatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey + "&units=imperial";
+    var openWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey + "&units=imperial";
     fetch(openWeatherURL)
         .then(function (response) {
             return response.json();
@@ -74,7 +74,7 @@ function openWeatherAPI() {
 }
 
 function geoCodeAPI() {
-    var geoCodingURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + openWeatherKey;
+    var geoCodingURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + openWeatherKey;
     fetch(geoCodingURL)
         .then(function (response) {
             return response.json();
@@ -127,7 +127,7 @@ function fiveDayForcast() {
     humid1.text(fiveDay[0].humid);
     weatherInfo1.append(humid1);
     var icon1 = $('<img>');
-    icon1.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[0].icon + 'd@2x.png')
+    icon1.attr('src', 'https://openweathermap.org/img/wn/' + fiveDay[0].icon + 'd@2x.png')
     weatherInfo1.append(icon1);
 
     // day+2
@@ -145,7 +145,7 @@ function fiveDayForcast() {
     humid2.text(fiveDay[1].humid);
     weatherInfo2.append(humid2);
     var icon2 = $('<img>');
-    icon2.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[1].icon + 'd@2x.png')
+    icon2.attr('src', 'https://openweathermap.org/img/wn/' + fiveDay[1].icon + 'd@2x.png')
     weatherInfo2.append(icon2);
 
     // day+3
@@ -163,7 +163,7 @@ function fiveDayForcast() {
     humid3.text(fiveDay[2].humid);
     weatherInfo3.append(humid3);
     var icon3 = $('<img>');
-    icon3.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[2].icon + 'd@2x.png')
+    icon3.attr('src', 'https://openweathermap.org/img/wn/' + fiveDay[2].icon + 'd@2x.png')
     weatherInfo3.append(icon3);
 
     // day+4
@@ -181,7 +181,7 @@ function fiveDayForcast() {
     humid4.text(fiveDay[3].humid);
     weatherInfo4.append(humid4);
     var icon4 = $('<img>');
-    icon4.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[3].icon + 'd@2x.png')
+    icon4.attr('src', 'https://openweathermap.org/img/wn/' + fiveDay[3].icon + 'd@2x.png')
     weatherInfo4.append(icon4);
 
     // day+5
@@ -199,7 +199,7 @@ function fiveDayForcast() {
     humid5.text(fiveDay[4].humid);
     weatherInfo5.append(humid5);
     var icon5 = $('<img>');
-    icon5.attr('src', 'http://openweathermap.org/img/wn/' + fiveDay[4].icon + 'd@2x.png')
+    icon5.attr('src', 'https://openweathermap.org/img/wn/' + fiveDay[4].icon + 'd@2x.png')
     weatherInfo5.append(icon5);
 }
 
