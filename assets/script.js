@@ -1,3 +1,4 @@
+
 dayjs().format();
 var today = dayjs().format('M/D/YYYY');
 var openWeatherKey = "28b9f68edfd5dc9c73e3e4892e6278f5";
@@ -54,55 +55,21 @@ function openWeatherAPI() {
         })
         .then(function (data) {
             console.log(data.list);
+            var dayInfo;
+            for (let i = 0; i < data.list.length; i++) {
+                if (data.list[i].dt_txt.includes("12:00:00")) {
+                    var dayInfo = {
+                        icon: data.list[i].weather[0].icon.slice(0, -1),
+                        date: dayjs.unix(data.list[i].dt).format("MM/DD/YY"),
+                        temp: "Temp: " + data.list[i].main.temp + "°F",
+                        wind: "Wind: " + data.list[i].wind.speed + " MPH",
+                        humid: "Humidity: " + data.list[i].main.humidity + '%'
+                    }
+                    fiveDay.push(dayInfo);
+                }
 
-            fiveDay = [];
-
-            var dayOne = {
-                icon: (data.list[4].weather[0].icon).slice(0, -1),
-                date: dayjs.unix(data.list[4].dt).format("MM/DD/YY"),
-                temp: "Temp: " + data.list[4].main.temp + "°F",
-                wind: "Wind: " + data.list[4].wind.speed + " MPH",
-                humid: "Humidity: " + data.list[4].main.humidity + '%'
             }
-
-            fiveDay.push(dayOne);
-            var dayTwo = {
-                icon: (data.list[12].weather[0].icon).slice(0, -1),
-                date: dayjs.unix(data.list[12].dt).format("MM/DD/YY"),
-                temp: "Temp: " + data.list[12].main.temp + "°F",
-                wind: "Wind: " + data.list[12].wind.speed + " MPH",
-                humid: "Humidity: " + data.list[12].main.humidity + '%'
-            }
-            fiveDay.push(dayTwo);
-            var dayThree = {
-                icon: (data.list[20].weather[0].icon).slice(0, -1),
-                date: dayjs.unix(data.list[20].dt).format("MM/DD/YY"),
-                temp: "Temp: " + data.list[20].main.temp + "°F",
-                wind: "Wind: " + data.list[20].wind.speed + " MPH",
-                humid: "Humidity: " + data.list[20].main.humidity + '%'
-            }
-            fiveDay.push(dayThree);
-
-            var dayFour = {
-                icon: (data.list[28].weather[0].icon).slice(0, -1),
-                date: dayjs.unix(data.list[28].dt).format("MM/DD/YY"),
-                temp: "Temp: " + data.list[28].main.temp + "°F",
-                wind: "Wind: " + data.list[28].wind.speed + " MPH",
-                humid: "Humidity: " + data.list[28].main.humidity + '%'
-            }
-            fiveDay.push(dayFour);
-
-            var dayFive = {
-                icon: (data.list[36].weather[0].icon).slice(0, -1),
-                date: dayjs.unix(data.list[36].dt).format("MM/DD/YY"),
-                temp: "Temp: " + data.list[36].main.temp + "°F",
-                wind: "Wind: " + data.list[36].wind.speed + " MPH",
-                humid: "Humidity: " + data.list[36].main.humidity + '%'
-            }
-            fiveDay.push(dayFive);
-
             fiveDayForcast();
-
         });
 }
 
