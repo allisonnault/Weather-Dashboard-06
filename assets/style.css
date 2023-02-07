@@ -74,10 +74,7 @@
 
 #weatherTable  thead{
     background-color: var(--greyblue) !important;
-    background-image: linear-gradient(
-          var(--greyblue) 0%,
-          var(--lightblue) 100%
-        ); 
+    border-bottom: #4c6f8d solid 1px;
     color: white;
 }
 
