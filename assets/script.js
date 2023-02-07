@@ -18,7 +18,9 @@ var day2 = $('#day2');
 var day3 = $('#day3');
 var day4 = $('#day4');
 var day5 = $('#day5');
+var refineSearch = $('#top-hits');
 var fiveDay = [];
+var searchInput = $('#searchInput');
 
 
 function currentWeatherAPI() {
@@ -28,8 +30,7 @@ function currentWeatherAPI() {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
-            
+       
             var currentDay = {
                 icon: (data.weather[0].icon).slice(0, -1),
                 temp: "Temp: " + + data.main.temp + "°F",
@@ -54,7 +55,7 @@ function openWeatherAPI() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.list);
+        
             var dayInfo;
             for (let i = 0; i < data.list.length; i++) {
                 if (data.list[i].dt_txt.includes("12:00:00")) {
@@ -80,23 +81,19 @@ function geoCodeAPI() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            lat = data[0].lat;
-            lon = data[0].lon;
-            currentCity.text(data[0].name + ", " + data[0].state + " - " + today + " ");
-            var cityInfo = {
-                city: data[0].name,
-                state: data[0].state,
-                lat: data[0].lat,
-                lon: data[0].lon
+            
+            for (let i = 0; i < data.length; i++) {
+        
+                var buttonEl = $("<button>");
+                buttonEl.text(data[i].name + ', ' + data[i].state);
+                buttonEl.attr('data-lat', data[i].lat);
+                buttonEl.attr('data-lon', data[i].lon);
+                buttonEl.attr('data-city', data[i].name);
+                buttonEl.attr("data-state", data[i].state);
+                buttonEl.attr('data-bs-dismiss', 'modal');
+                buttonEl.addClass('refineBtn btn btn-dark w-100 gap-2');
+                refineSearch.append(buttonEl);      
             }
-            var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
-            storedSearch.push(cityInfo);
-            localStorage.setItem("weatherAPI", JSON.stringify(storedSearch));
-            saveSearch();
-            openWeatherAPI();
-            currentWeatherAPI();
-            // console.log(data);
         });
 }
 
@@ -206,15 +203,25 @@ function fiveDayForcast() {
 function saveSearch() {
     var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
     searchResults.html(" ");
+    if (storedSearch.length > 7){
     for (var i = storedSearch.length -1; i > storedSearch.length-7; i--) {
         var buttonEl = $("<button>");
-        buttonEl.text(storedSearch[i].city)
+        buttonEl.text(storedSearch[i].city + ', ' + storedSearch[i].state)
         buttonEl.attr('data-lat', storedSearch[i].lat);
         buttonEl.attr('data-lon', storedSearch[i].lon);
         buttonEl.attr('data-city', storedSearch[i].city);
         buttonEl.attr("data-state", storedSearch[i].state);
         buttonEl.addClass('pastBtn btn btn-dark w-100 gap-2')
         searchResults.append(buttonEl);
+    }} else { for (var i = storedSearch.length -1; i >= 0; i--) {
+        var buttonEl = $("<button>");
+        buttonEl.text(storedSearch[i].city + ', ' + storedSearch[i].state);
+        buttonEl.attr('data-lat', storedSearch[i].lat);
+        buttonEl.attr('data-lon', storedSearch[i].lon);
+        buttonEl.attr('data-city', storedSearch[i].city);
+        buttonEl.attr("data-state", storedSearch[i].state);
+        buttonEl.addClass('pastBtn btn btn-dark w-100 gap-2')
+        searchResults.append(buttonEl);}
     }
 }
 saveSearch();
@@ -223,6 +230,30 @@ searchResults.on('click', '.pastBtn', function () {
     lat = $(this).attr('data-lat');
     lon = $(this).attr('data-lon');
     currentCity.text($(this).attr('data-city') + ", " + $(this).attr('data-state') + " - " + today);
+    fiveDay = [];
     openWeatherAPI();
     currentWeatherAPI();
 }); 
+
+refineSearch.on('click', '.refineBtn', function(){
+    
+    lat = $(this).attr('data-lat');
+    lon = $(this).attr('data-lon');
+    currentCity.text($(this).attr('data-city') + ", " + $(this).attr('data-state') + " - " + today);
+    
+    var cityInfo = {
+        city: $(this).attr('data-city'),
+        state: $(this).attr('data-state'),
+        lat: $(this).attr('data-lat'),
+        lon: $(this).attr('data-lon')
+    }
+
+    var storedSearch = JSON.parse(localStorage.getItem("weatherAPI")) || [];
+    storedSearch.push(cityInfo);
+    localStorage.setItem("weatherAPI", JSON.stringify(storedSearch));
+    fiveDay = [];
+    saveSearch();
+    openWeatherAPI();
+    currentWeatherAPI();
+    refineSearch.html(' '); 
+});
