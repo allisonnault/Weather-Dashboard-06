@@ -21,7 +21,7 @@
     list-style: none;
 }
 
-.pastBtn {
+.pastBtn, .refineBtn {
     margin: 2px;
 }
 

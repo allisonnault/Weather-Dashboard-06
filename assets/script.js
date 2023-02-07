@@ -21,6 +21,7 @@ var day5 = $('#day5');
 var refineSearch = $('#top-hits');
 var fiveDay = [];
 var searchInput = $('#searchInput');
+var closeBtn = $('.btn-close');
 
 
 function currentWeatherAPI() {
@@ -257,3 +258,7 @@ refineSearch.on('click', '.refineBtn', function(){
     currentWeatherAPI();
     refineSearch.html(' '); 
 });
+
+closeBtn.on('click', function(){
+    refineSearch.html(' ');
+})
