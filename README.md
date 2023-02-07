@@ -12,6 +12,7 @@ I created an application for a user to search the weather outlook for mulitple c
 Through this project: 
 - I gained experience using jQuery and 3rd party API's like days.js and Open Weather Map.
 - I have a better understanding of how to use local storage to save user
+- i gained experience using bootstrap
 
 
 ## Usage
